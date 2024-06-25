@@ -4,13 +4,10 @@ from .algorithms.lzw import LZWCoding
 from pathlib import Path
 import unittest
 from .base.enums import CodingType
-from .tests.huffman_test import TestHuffmanCoding
-from .tests.lzw_test import TestLZW
 from typer import Typer, Argument, Option
 from rich.console import Console
 import os
 import sys
-import io
 
 app = Typer()
 console = Console()
