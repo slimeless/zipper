@@ -1,6 +1,4 @@
 from .build.huff_build import HuffBuild
-from .algorithms.huffman import HuffmanCoding
-from .algorithms.lzw import LZWCoding
 from pathlib import Path
 import unittest
 from .base.enums import CodingType
@@ -50,12 +48,4 @@ def execute_file(file: Path = Argument(..., exists=True),
 
 
 if __name__ == "__main__":
-	tests = unittest.TestLoader().discover('tests', pattern='*.py')
-	suite = unittest.TestSuite(tests)
-	with open(os.devnull, 'w') as f:
-		pass
-	result = unittest.TextTestRunner(stream=f, verbosity=2).run(suite)
-	if result.wasSuccessful():
-		app()
-	else:
-		raise SystemExit
+	app()
