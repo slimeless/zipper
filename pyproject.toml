@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = ""
+authors = ["John Smith <john@example.com>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+zipper = "app.main:app"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+typer = "^0.12.3"
+pydantic = "^2.7.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
