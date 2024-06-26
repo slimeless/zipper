@@ -41,7 +41,7 @@ def execute_file(file: Path = Argument(..., exists=True),
 		fn = build.execute_func()
 		if fn == build.execute_compression:
 			with console.status("[bold green]Compressing...", spinner="growHorizontal"):
-				res = build.execute_decompression()
+				res = build.execute(func=fn)
 
 		else:
 			with console.status("[bold green]Decompressing...", spinner="growHorizontal"):
