@@ -22,7 +22,6 @@ def execute_file(file: Path = Argument(..., exists=True),
                                                 help='Compress or decompress file with huffman or lzw algorithm')
                  ):
 	try:
-		raise Exception('Not implemented')
 		match algorithm, file.suffix:
 			case _, '.lzw':
 				algorithm = LZWCoding
