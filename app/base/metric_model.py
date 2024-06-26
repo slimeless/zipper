@@ -7,37 +7,37 @@ from rich.align import Align
 from typing_extensions import Annotated
 from pydantic import BeforeValidator
 import traceback
+import sys
 
 TracebackLocation = Annotated[
-	tuple, BeforeValidator(lambda tb: (traceback.extract_tb(tb)[-1].filename, traceback.extract_tb(tb)[-1].lineno))]
+	tuple, BeforeValidator(lambda tb: (x for x in traceback.extract_tb(tb)))]
+
+TracebackInfo = Annotated[
+	str, BeforeValidator(lambda info: ''.join(traceback.format_exception(*info)))
+]
 
 
 class TraceBack(BaseModel):
 	traceback: TracebackLocation
-	name: str
-	message: str
+	info: TracebackInfo
 
 	def __rich_console__(self, console: Console, options: ConsoleOptions):
-		tb_align = Align.center(f'file: {self.traceback[0]} line: {self.traceback[1]}', vertical='middle')
-		tb_panel = Panel(title='[bold]Traceback location', title_align='center', style='red', renderable=tb_align)
-		name_align = Align.center(self.name, vertical='middle')
-		name_panel = Panel(title='[bold]Name', title_align='center', renderable=name_align, style='red')
-		message_align = Align.center(f'Oops! {self.message}', vertical='middle')
-		message_panel = Panel(title='[bold]Message', title_align='center', renderable=message_align, style='red')
-		layout_left = Layout(name='left')
-		layout_right = Layout(name='right')
-		layout_right.split_column(
-			Layout(name='upper'),
-			Layout(name='lower')
-		)
-		layout_right['upper'].split_row(Layout(name_panel), Layout(message_panel))
-		layout_right['lower'].split_row(Layout(tb_panel))
-		layout_right.size = 50
-		layout_left.size = 50
-
-		layout = Layout(size=3)
-		layout.split_row(layout_left, layout_right)
+		exp_type = self._recognize_type_exp()
+		layout = Layout(name='root')
+		layout.split_row(Layout(name='right'), Layout(name='left'))
+		layout['left'].split_column(Layout(name='top'), Layout(name='bottom'))
+		layout['right'].update(Panel(Align.center(f'any text', vertical='middle'), style='blue'))
+		layout['top'].update(Panel(Align.center(exp_type, vertical='middle'), style='blue', title='Error'))
+		layout['bottom'].update(Panel(Align.center('any text', vertical='middle'), style='blue'))
+		layout.size = options.size
 		yield layout
+
+	def _recognize_type_exp(self):
+		is_algorithm = any('algorithms' in x.filename for x in self.traceback)
+		if is_algorithm:
+			algo = 'huffman' if any('huffman' in x.filename for x in self.traceback) else 'lzw'
+			return f'[green]Something went wrong with [bold]{algo}[/bold] algorithm[/green]'
+		return f'[green][bold]non[/bold] recognized error[green]'
 
 
 class FileMetric(BaseModel):

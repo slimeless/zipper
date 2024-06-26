@@ -5,8 +5,10 @@ from .base.metric_model import TraceBack
 from pathlib import Path
 import unittest
 from .base.enums import CodingType
-from typer import Typer, Argument, Option
+from typer import Typer, Argument, Option, launch
 from rich.console import Console
+from typer import confirm
+from .utils.url import generate_issue_link
 import os
 import sys
 
@@ -49,8 +51,12 @@ def execute_file(file: Path = Argument(..., exists=True),
 
 	except Exception as e:
 		tb = sys.exc_info()[2]
-		traceback = TraceBack(name=type(e).__name__, message=str(e), traceback=tb)
+		traceback = TraceBack(traceback=tb, info=sys.exc_info())
+		console.size = (65, 10)
 		console.print(traceback)
+		if confirm("Would you like to send issue?", default=False):
+			link = generate_issue_link(title=f'[AUTO ISSUE]', body=traceback.info)
+			launch(link)
 
 
 if __name__ == "__main__":
