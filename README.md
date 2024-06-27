@@ -8,11 +8,6 @@ Overview
 
 The Compressor CLI is a command-line interface for compressing and decompressing files using various algorithms. Currently, it supports Huffman Coding and LZW (Lempel-Ziv-Welch) algorithms. This tool is designed to be easy to use for both beginners and experienced users.
 
-Installation
-------------
-
-Before using the Compressor CLI, ensure that Python and the required dependencies are installed on your system. Follow the installation instructions provided in the project's README file.
-
 Commands
 --------
 
@@ -35,7 +30,7 @@ zipper cmp [OPTIONS] PATH
 
 #### Example:
 ```
-zipper cmp -a HUFFMAN /path/to/file
+zipper cmp -a lzw /path/to/file
 ```
 
 ### 2. Decompression (`ucmp`)
