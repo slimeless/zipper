@@ -131,7 +131,7 @@ class HuffmanCoding(AbstractAlgorithm):
 
 	def compress(self):
 		file_extension, tree, b = self._compress()
-		with open(self.base_name + self.suffix, 'wb') as f:
+		with open(self.directory + '/' + self.base_name + self.suffix, 'wb') as f:
 			pickle.dump((file_extension, tree, b), f)
 
 	def _decompress(self):

@@ -15,15 +15,15 @@ class HuffBuild(AbstractBuilder):
 
 	def compression_metrics(self, elapsed: float) -> CompressionMetric:
 		original_file = FileMetric(filename=str(self.filename), size=get_size(self.filename))
-		compressed_file = FileMetric(filename=str(self.filename.with_suffix(self.algorithm.suffix)),
-		                             size=get_size(self.filename.with_suffix(self.algorithm.suffix)))
+		compressed_file = FileMetric(filename=str(self.output.joinpath(self.filename.name).with_suffix(self.algorithm.suffix)),
+		                             size=get_size(self.output.joinpath(self.filename.name).with_suffix(self.algorithm.suffix)))
 		ratio = (compressed_file.size / original_file.size) * 100
 		space_saved = original_file.size - compressed_file.size
 		return CompressionMetric(file=original_file, compressed_file=compressed_file, ratio=ratio,
 		                         space_saved=space_saved, elapsed=elapsed)
 
 	def decompression_metrics(self, elapsed: float) -> DecompressionMetric:
-		file = FileMetric(filename=str(self.filename.with_suffix(self.algorithm.suffix)), size=get_size(self.filename))
+		file = FileMetric(filename=str(self.filename), size=get_size(self.filename))
 		return DecompressionMetric(file=file, elapsed=elapsed)
 
 	def execute_func(self):

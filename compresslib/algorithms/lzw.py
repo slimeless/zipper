@@ -74,7 +74,7 @@ class LZWCoding(AbstractAlgorithm):
 
 		compressed_data = self._compress(uncompressed_data)
 
-		with open(self.base_name + self.suffix, 'wb') as output_file:
+		with open(self.directory + '/' + self.base_name + self.suffix, 'wb') as output_file:
 			pickle.dump((str(Path(self.path).suffix), compressed_data), output_file)
 
 	def decompress(self):
