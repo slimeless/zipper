@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, mock_open
 import pytest
-from app.algorithms.huffman import HuffmanCoding
+from compresslib.algorithms.huffman import HuffmanCoding
 import os
 
 

@@ -1,5 +1,5 @@
 import pytest
-from app.algorithms.lzw import LZWCoding
+from compresslib.algorithms.lzw import LZWCoding
 
 
 @pytest.fixture()

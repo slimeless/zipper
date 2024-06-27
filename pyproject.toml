@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "app"
+name = "compresslib"
 version = "0.1.1"
 description = ""
 authors = ["John Smith <john@example.com>"]
 readme = "README.md"
 
 [tool.poetry.scripts]
-zipper = "app.main:app"
+zipper = "compresslib.main:app"
 
 [tool.poetry.dependencies]
 python = "^3.10"
