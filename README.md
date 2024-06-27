@@ -1,5 +1,3 @@
-Here is the rewritten documentation in Markdown format:
-
 **Compressor CLI Documentation**
 =============================
 
