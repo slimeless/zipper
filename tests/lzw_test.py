@@ -1,4 +1,5 @@
 import pytest
+
 from compresslib.algorithms.lzw import LZWCoding
 
 

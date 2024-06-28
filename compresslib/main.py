@@ -1,17 +1,16 @@
-from .build.huff_build import HuffBuild
-from .algorithms.lzw import LZWCoding
-from .algorithms.huffman import HuffmanCoding
-from .base.metric_model import TraceBack
-from pathlib import Path
-import unittest
-from .base.enums import CodingType
-from typer import Typer, Argument, Option, launch
-from rich.console import Console
-from typer import confirm
-from .utils.url import generate_issue_link
-from typing_extensions import Annotated
-import os
 import sys
+from pathlib import Path
+
+from rich.console import Console
+from typer import Typer, Argument, Option, launch
+from typer import confirm
+
+from .algorithms.huffman import HuffmanCoding
+from .algorithms.lzw import LZWCoding
+from .base.enums import CodingType
+from .base.metric_model import TraceBack
+from .build.huff_build import HuffBuild
+from .utils.url import generate_issue_link
 
 app = Typer()
 console = Console()

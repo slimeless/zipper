@@ -1,13 +1,13 @@
-from pydantic import BaseModel
-from rich.panel import Panel
-from rich.console import Console, ConsoleOptions
-from rich.table import Table
-from rich.layout import Layout
-from rich.align import Align
-from typing_extensions import Annotated
-from pydantic import BeforeValidator
 import traceback
-import sys
+
+from pydantic import BaseModel
+from pydantic import BeforeValidator
+from rich.align import Align
+from rich.console import Console, ConsoleOptions
+from rich.layout import Layout
+from rich.panel import Panel
+from rich.table import Table
+from typing_extensions import Annotated
 
 TracebackLocation = Annotated[
 	tuple, BeforeValidator(lambda tb: (x for x in traceback.extract_tb(tb)))]

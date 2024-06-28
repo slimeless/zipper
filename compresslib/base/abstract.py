@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-from .metric_model import CompressionMetric, DecompressionMetric
 from pathlib import Path
+
+from .metric_model import CompressionMetric, DecompressionMetric
 
 
 class AbstractAlgorithm(ABC):

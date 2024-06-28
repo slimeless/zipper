@@ -1,11 +1,10 @@
-import os
 import heapq
-from collections import Counter
+import os
 import pickle
-import struct
-from ..base.abstract import AbstractAlgorithm
+from collections import Counter
 from typing import Optional
-from pathlib import Path
+
+from ..base.abstract import AbstractAlgorithm
 
 
 class HuffmanCoding(AbstractAlgorithm):

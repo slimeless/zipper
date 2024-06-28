@@ -1,11 +1,11 @@
-from ..algorithms.huffman import HuffmanCoding
-from ..base.metric_model import CompressionMetric, FileMetric, DecompressionMetric
-from ..base.abstract import AbstractBuilder, AbstractAlgorithm
-from ..utils.path_utils import get_size
+import timeit
 from pathlib import Path
 from typing import Type
-from time import time
-import timeit
+
+from ..algorithms.huffman import HuffmanCoding
+from ..base.abstract import AbstractBuilder, AbstractAlgorithm
+from ..base.metric_model import CompressionMetric, FileMetric, DecompressionMetric
+from ..utils.path_utils import get_size
 
 
 class HuffBuild(AbstractBuilder):

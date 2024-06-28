@@ -1,9 +1,10 @@
-from ..base.abstract import AbstractAlgorithm
 import os
-from pathlib import Path
-import tempfile
 import pickle
 from collections import defaultdict
+from pathlib import Path
+
+from ..base.abstract import AbstractAlgorithm
+
 
 class LZWCoding(AbstractAlgorithm):
 	__slots__ = ('max_table_size', 'compress_dict', 'decompress_dict', 'dict_size', )
